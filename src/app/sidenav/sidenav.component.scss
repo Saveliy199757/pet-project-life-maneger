@@ -94,6 +94,10 @@
     .sidenav-nav-link {
       background-color: #fff;
       color: #000;
+
+      .menu-collapse-icon {
+        color: #000;
+      }
     }
   }
 }
@@ -101,8 +105,57 @@
 .active {
   background-color: #fff;
 
+  .menu-collapse-icon,
   .sidenav-link-icon,
   .sidenav-link-text {
     color: #000;
   }
 }
+
+.active-sublevel {
+  color: #f3f3f3 !important;
+  // opacity: 1 !important;
+}
+
+.menu-collapse-icon {
+  font-size: 25px;
+  width: 2rem;
+  min-width: 2rem;
+  margin: auto 0.5rem auto auto;
+  text-align: center;
+  color: #f3f3f3;
+}
+
+.sublevel-nav {
+  list-style: none;
+  margin-left: 10px;
+
+  .sublevel-nav-item {
+    .sublevel-nav-link {
+      display: flex;
+      align-items: center;
+      height: 3rem;
+      color: #898989;
+      text-decoration: none;
+      border-radius: 0.625rem;
+      transition: all .3s ease;
+
+      .sublevel-link-icon {
+        font-size: 4px;
+        width: 2rem;
+        min-width: 2rem;
+        margin: 0 0.5rem;
+        text-align: center;
+      }
+
+      .sublevel-link-text {
+        margin-left: 0.8rem;
+      }
+    }
+
+    .sublevel-nav-link:hover {
+      color: #f3f3f3;
+    }
+  }
+}
+
