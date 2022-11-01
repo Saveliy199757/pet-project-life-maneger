@@ -159,3 +159,45 @@
   }
 }
 
+//scrollbar and visibility on hover and focus
+
+.scrollwrap {
+  overflow-y: auto;
+  visibility: hidden;
+  height: calc(100% - 3.65rem);
+}
+
+.sidenav-nav,
+.scrollwrap:hover,
+.scrollwrap:focus {
+  visibility: visible;
+}
+
+.scrollwrap_delayed {
+  transition: visibility 0.5s 0.2s;
+}
+
+.scrollwrap_delayed:hover {
+  transition: visibility 0.2s 0.2s;
+}
+
+// works on chrome, edge and safari
+.scrollwrap::-webkit-scrollbar {
+  width: 10px;
+}
+
+.scrollwrap::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollwrap::-webkit-scrollbar-thumb {
+  background-color: #556268;
+  border-radius: 20px;
+}
+
+// works on firefox
+.scrollwrap {
+  scrollbar-width: thin;
+  scrollbar-color: #556268 transparent;
+}
+

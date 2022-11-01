@@ -9,7 +9,53 @@ export const navbarData: INavbarData[] = [
   {
     routeLink: 'products',
     icon: 'fal fa-box-open',
-    label: 'Products'
+    label: 'Products',
+    items: [
+      {
+        routeLink: 'products/level1.1',
+        label: "level 1.1",
+        items: [
+          {
+            routeLink: "products/level2.1",
+            label: "level 2.1",
+            items: [
+              {
+                routeLink: "products/level3.1",
+                label: "level 3.1"
+              },
+              {
+                routeLink: "products/level3.2",
+                label: "level 3.2"
+              },
+              {
+                routeLink: "products/level3.3",
+                label: "level 3.3"
+              },
+              {
+                routeLink: "products/level3.4",
+                label: "level 3.5"
+              }
+            ]
+          },
+          {
+            routeLink: "products/level2.2",
+            label: "level 2.2"
+          },
+          {
+            routeLink: "products/level2.3",
+            label: "level 2.3"
+          },
+          {
+            routeLink: "products/level2.4",
+            label: "level 2.4"
+          },
+        ]
+      },
+      {
+        routeLink: 'products/level1.2',
+        label: "level 1.2"
+      }
+    ]
   },
   {
     routeLink: 'statistics',
@@ -44,6 +90,17 @@ export const navbarData: INavbarData[] = [
   {
     routeLink: 'settings',
     icon: 'fal fa-cog',
-    label: 'Settings'
+    label: 'Settings',
+    expanded: true,
+    items: [
+      {
+        routeLink: 'settings/profile',
+        label: 'Profile'
+      },
+      {
+        routeLink: 'settings/customize',
+        label: 'Customize'
+      }
+    ]
   },
 ];

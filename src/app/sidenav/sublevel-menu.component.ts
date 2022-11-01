@@ -13,9 +13,9 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
      >
        <li class="sublevel-nav-item"
            *ngFor="let item of data.items"
-           (click)="handleClick(item)"
        >
-         <a href="" class="sublevel-nav-link"
+         <a class="sublevel-nav-link"
+            (click)="handleClick(item)"
             *ngIf="item.items && item.items.length > 0">
            <i class="sublevel-link-icon fa fa-circle"></i>
            <span class="sublevel-link-text" *ngIf="collapsed">{{item.label}}</span>
@@ -35,6 +35,7 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
          </a>
          <div *ngIf="item.items && item.items.length > 0">
            <app-sublevel-menu
+             [data]="item"
              [collapsed]="collapsed"
              [multiple]="multiple"
              [expanded]="item.expanded"
@@ -74,8 +75,6 @@ export class SublevelMenuComponent implements OnInit {
   @Input() animating: boolean | undefined
   @Input() expanded: boolean | undefined
   @Input() multiple: boolean = false
-
-
 
   constructor() { }
 
