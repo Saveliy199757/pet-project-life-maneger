@@ -1,7 +1,8 @@
 import {Component, EventEmitter, HostListener, OnInit, Output} from '@angular/core';
 import {navbarData} from "./nav-data";
 import {animate, keyframes, style, transition, trigger} from "@angular/animations";
-import {INavbarData} from "./helper";
+import {fadeInOut, INavbarData} from "./helper";
+import {Router} from "@angular/router";
 
 interface sidenavToggle {
   screenWidth: number,
@@ -13,20 +14,7 @@ interface sidenavToggle {
   templateUrl: './sidenav.component.html',
   styleUrls: ['./sidenav.component.scss'],
   animations: [
-    trigger('fadeInOut', [
-      transition(':enter', [
-        style({opacity: 0}),
-        animate('350ms',
-          style({opacity: 1})
-          )
-      ]),
-      transition(':leave', [
-        style({opacity: 1}),
-        animate('350ms',
-          style({opacity: 0})
-        )
-      ])
-    ]),
+    fadeInOut,
     trigger('rotate', [
       transition(':enter', [
         animate('1000ms',
@@ -44,7 +32,7 @@ export class SidenavComponent implements OnInit {
 
   @Output() onToggleSidenav: EventEmitter<sidenavToggle> = new EventEmitter()
 
-  constructor() { }
+  constructor(public router: Router) { }
 
   collapsed = true
   navData = navbarData
@@ -74,15 +62,19 @@ export class SidenavComponent implements OnInit {
     this.onToggleSidenav.emit({screenWidth: this.screenWidth, collapsed: this.collapsed})
   }
   handleClick(item: INavbarData): void {
-    if (this.multiple) {
+    this.shrinkItems(item)
+    item.expanded = !item.expanded
+  }
+  getActiveClass(data: INavbarData): string {
+   return this.router.url.includes(data.routeLink) ? "active" : ""
+  }
+  shrinkItems(item: INavbarData): void {
+    if (!this.multiple) {
       for (let modelItem of this.navData) {
         if (item !== modelItem && modelItem.expanded) {
           modelItem.expanded = false
         }
       }
     }
-    item.expanded = !item.expanded
   }
-
-
-}
+ }

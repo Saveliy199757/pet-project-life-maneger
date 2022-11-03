@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {INavbarData} from "./helper";
+import {fadeInOut, INavbarData} from "./helper";
 import {animate, state, style, transition, trigger} from "@angular/animations";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-sublevel-menu',
@@ -15,10 +16,11 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
            *ngFor="let item of data.items"
        >
          <a class="sublevel-nav-link"
+            [ngClass]="getActiveClass(item)"
             (click)="handleClick(item)"
             *ngIf="item.items && item.items.length > 0">
            <i class="sublevel-link-icon fa fa-circle"></i>
-           <span class="sublevel-link-text" *ngIf="collapsed">{{item.label}}</span>
+           <span class="sublevel-link-text" @fadeInOut *ngIf="collapsed">{{item.label}}</span>
            <i class="menu-collapse-icon"
               *ngIf="collapsed && item.items"
               [ngClass]="!item.expanded ? 'fal fa-angle-right' : 'fal fa-angle-down'"
@@ -27,11 +29,11 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
          <a class="sublevel-nav-link"
             *ngIf="!item.items || (item.items && item.items.length === 0)"
             [routerLink]="item.routeLink"
-            routerLinkActive="active"
+            routerLinkActive="active-sublevel"
             [routerLinkActiveOptions]="{exact: true}"
          >
            <i class="sublevel-link-icon fa fa-circle"></i>
-           <span class="sublevel-link-text" *ngIf="collapsed">{{item.label}}</span>
+           <span class="sublevel-link-text" @fadeInOut *ngIf="collapsed">{{item.label}}</span>
          </a>
          <div *ngIf="item.items && item.items.length > 0">
            <app-sublevel-menu
@@ -47,6 +49,7 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
   `,
   styleUrls: ['./sidenav.component.scss'],
   animations: [
+    fadeInOut,
     trigger('submenu', [
       state('hidden', style({
         height: '0',
@@ -76,7 +79,7 @@ export class SublevelMenuComponent implements OnInit {
   @Input() expanded: boolean | undefined
   @Input() multiple: boolean = false
 
-  constructor() { }
+  constructor(public router: Router) { }
 
   ngOnInit(): void {
   }
@@ -91,6 +94,9 @@ export class SublevelMenuComponent implements OnInit {
       }
     }
     item.expanded = !item.expanded
+  }
+  getActiveClass(item: INavbarData): string {
+    return item.expanded && this.router.url.includes(item.routeLink) ? "active-sublevel" : ""
   }
 
 }
