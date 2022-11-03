@@ -10,6 +10,7 @@
 body {
   position: relative;
   font-family: 'Roboto', sans-serif;
+  background: #f4f7fa;
 }
 
 .card {
@@ -19,6 +20,7 @@ body {
   background-color: #fff;
   margin: 1.25rem 0 1.25rem 0;
   box-shadow: 0 .25rem .5rem #e6edef;
+  color: #495057;
 
   .card-head {
     padding: 1rem 1.5rem;

@@ -12,6 +12,7 @@ import { PagesComponent } from './pages/pages.component';
 import { MediaComponent } from './media/media.component';
 import { SettingsComponent } from './settings/settings.component';
 import { SublevelMenuComponent } from './sidenav/sublevel-menu.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -23,12 +24,13 @@ import { SublevelMenuComponent } from './sidenav/sublevel-menu.component';
     PagesComponent,
     MediaComponent,
     SettingsComponent,
-    SublevelMenuComponent
+    SublevelMenuComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

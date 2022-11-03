@@ -34,7 +34,7 @@ export class SidenavComponent implements OnInit {
 
   constructor(public router: Router) { }
 
-  collapsed = true
+  collapsed = false
   navData = navbarData
   screenWidth = 0
   multiple: boolean = false
