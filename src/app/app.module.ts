@@ -13,6 +13,8 @@ import { MediaComponent } from './media/media.component';
 import { SettingsComponent } from './settings/settings.component';
 import { SublevelMenuComponent } from './sidenav/sublevel-menu.component';
 import { HeaderComponent } from './header/header.component';
+import { CdkMenuModule } from "@angular/cdk/menu";
+import { OverlayModule } from "@angular/cdk/overlay";
 
 @NgModule({
   declarations: [
@@ -31,6 +33,8 @@ import { HeaderComponent } from './header/header.component';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    OverlayModule,
+    CdkMenuModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

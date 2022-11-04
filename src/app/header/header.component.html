@@ -8,6 +8,7 @@
         </div>
         <div *ngIf="canShowSearchAsOverlay">
           <button
+            [cdkMenuTriggerFor]="searchOverlay"
             class="search-menu-btn ripple">
             <i class="far fa-search search-icon"></i>
           </button>
@@ -17,13 +18,15 @@
     <div class="head-content-right">
       <div class="head-menu">
         <div class="head-menu-item">
-          <button class="head-menu-item-btn ripple">
-            <img [src]="'assets/flags/russia.jpg'" class="flag" alt="flag">
+          <button
+            [cdkMenuTriggerFor]="languageOverlay"
+            class="head-menu-item-btn ripple">
+            <img [src]="'assets/flags/' + selectedLanguage.flag + '.jpg'" class="flag" alt="flag">
           </button>
           <button class="head-menu-item-btn ripple">
             <i class="far fa-expand menu-icon"></i>
           </button>
-          <button class="head-menu-item-btn ripple">
+          <button class="head-menu-item-btn ripple" [cdkMenuTriggerFor]="notificationOverlay">
             <i class="far fa-bell menu-icon"></i>
           </button>
           <button class="head-menu-item-btn ripple">
@@ -32,7 +35,7 @@
         </div>
       </div>
       <div class="head-user-avatar-container">
-        <div class="head-user-avatar">
+        <div class="head-user-avatar" [cdkMenuTriggerFor]="userOverlay">
           <img src="../../assets/avatar.jpg" alt="user" class="user-avatar">
           <div class="circle-indicator pulse"></div>
         </div>
@@ -41,10 +44,58 @@
   </div>
 </div>
 <ng-template #searchOverlay>
-  <div class="overlay overlay-search overlay-fall" >
+  <div class="overlay overlay-search overlay-fall" cdkMenu>
     <input type="search" class="search" name="" >
     <button class="search-btn">
       <i class="far fa-search search-icon"></i>
     </button>
+  </div>
+</ng-template>
+<ng-template #languageOverlay>
+  <div class="overlay overlay-language overlay-fall" cdkMenu>
+    <ul>
+      <li *ngFor="let lang of languages" cdkMenuItem>
+        <img [src]="'assets/flags/' + lang.flag + '.jpg'" alt="flag" >
+        <span>{{lang.language}}</span>
+      </li>
+    </ul>
+  </div>
+</ng-template>
+<ng-template #notificationOverlay>
+  <div class="overlay overlay-notification overlay-fall" cdkMenu>
+    <ul>
+      <li class="notification-head-container">
+        <div class="notification-head">Notification</div>
+        <span class="view-all-link">
+          <a>View all</a>
+        </span>
+      </li>
+      <li class="notification-message-container"
+          *ngFor="let notification of notifications"
+          cdkMenu
+      >
+        <i [class]="notification.icon"></i>
+        <div>
+          <div class="notification-subject">
+            {{notification.subject}}
+          </div>
+          <p class="notification-desc">
+            {{notification.description}}
+          </p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</ng-template>
+<ng-template #userOverlay>
+  <div class="overlay overlay-user overlay-fall" cdkMenu>
+    <ul>
+      <li *ngFor="let item of userItems" cdkMenuItem>
+        <a>
+          <i class="icon" [ngClass]="item.icon"></i>
+          <span>{{item.label}}</span>
+        </a>
+      </li>
+    </ul>
   </div>
 </ng-template>
