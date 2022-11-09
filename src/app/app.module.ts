@@ -16,6 +16,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { CdkMenuModule } from "@angular/cdk/menu";
 import { OverlayModule } from "@angular/cdk/overlay";
 import { DirectiveModule } from "./directives/directives.module";
+import {PipesModule} from "./pipes/pipes.module";
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { DirectiveModule } from "./directives/directives.module";
     AppRoutingModule,
     OverlayModule,
     CdkMenuModule,
-    DirectiveModule
+    DirectiveModule,
+    PipesModule
   ],
   providers: [],
   bootstrap: [AppComponent]

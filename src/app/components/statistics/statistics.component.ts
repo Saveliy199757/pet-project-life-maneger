@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StatisticsComponent implements OnInit {
 
+  statisticDateFrom: Date = new Date()
+  statisticDateTo: Date = new Date()
+
   constructor() { }
 
   ngOnInit(): void {
+    this.statisticDateFrom.setDate(this.statisticDateFrom.getDate() - 5).toLocaleString()
+    this.statisticDateTo.toLocaleDateString()
   }
 
 }
