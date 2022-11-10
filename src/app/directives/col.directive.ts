@@ -4,20 +4,20 @@ import { BreakpointService, ScreenSize } from "../services/breakpoint.service";
 
 /**
  * Styles
- * grid-column: span var(--don-col-size, <donCol>)
+ * grid-column: span var(--app-col-size, <donCol>)
  *
  * Default - 12
  */
 @Directive({
-  selector: "[donCol]",
+  selector: "[appCol]",
 })
 export class ColDirective implements OnDestroy {
-  @HostBinding("class.don-col") get class() {
+  @HostBinding("class.app-col") get class() {
     return true;
   }
 
   getColSize(size: number) {
-    return `span var(--don-col-size, ${size})`;
+    return `span var(--app-col-size, ${size})`;
   }
   @HostBinding("style.gridColumn") get _gridColumn() {
     if (this._xs) return this.getColSize(<number>this.xs);
@@ -29,7 +29,7 @@ export class ColDirective implements OnDestroy {
   }
 
   /** size of columns */
-  @Input("donCol") col?: number;
+  @Input("appCol") col?: number;
   @Input("xs") xs?: number;
   private get _xs() {
     return this.xs && this.screenSize === ScreenSize.XSmall;
